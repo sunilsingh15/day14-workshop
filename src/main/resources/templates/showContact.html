@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-th-object="${contact}">
+
+    <div th:text = "${successMessage}" th:if = "${successMessage != null}" class="success-message" style="color
+:green"></div>
+    <br>
+    <br>
+<a href="/">Back To Home</a>
+    <br>
+<a href="/list">Back To Contact List</a>
+
+    <h1>Your Contact Information</h1>
+
+    <p>
+        Id:
+        <p data-th-text="*{id}"></p>
+    </p>
+    <br>
+
+    <p>
+        Name:
+        <p data-th-text="*{name}"></p>
+    </p>
+    <br>
+
+    <p>
+        Email:
+        <p data-th-text="*{email}"></p>
+    </p>
+    <br>
+
+    <p>
+        Date Of Birth:
+        <p data-th-text="*{dateOfBirth}"></p>
+    </p>
+    <br>
+
+</body>
+</html>

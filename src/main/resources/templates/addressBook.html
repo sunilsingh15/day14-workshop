@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your Contact Information:</h1>
+    <form data-th-action="@{/contact}" data-th-object="${contact}" method="post">
+        <p>
+            Name:
+            <input type="text" data-th-field ="*{name}" />
+         <br/>
+         <span class = "error" data-th-if = "${#fields.hasErrors('name')}" data-th-errors = "*{name}" style="color: red
+         ;"></span>
+          </p>
+        <br/>
+
+
+        <p>
+            Email:
+            <input type="text" data-th-field ="*{email}" />
+            <br/>
+         <span class = "error" data-th-if = "${#fields.hasErrors('email')}" data-th-errors = "*{email}" style="color: red
+         ;"></span>
+          </p>
+        <br/>
+        
+ 
+
+        <p>
+            Phone Number:
+            <input type="text" data-th-field ="*{phoneNumber}" />
+          
+        <br/>
+         <span class = "error" data-th-if = "${#fields.hasErrors('phoneNumber')}" data-th-errors = "*{phoneNumber}" style="color: red
+         ;"></span>
+         </p>
+        
+<br/>
+         <p>
+            Date Of Birth:
+            <input type="date" data-th-field ="*{dateOfBirth}" />
+          
+        <br/>
+         <span class = "error" data-th-if = "${#fields.hasErrors('dateOfBirth')}" data-th-errors = "*{dateOfBirth}" style="color: red
+         ;"></span>
+         <br/>
+         <span class = "error" data-th-if = "${#fields.hasErrors('age')}" data-th-errors = "*{age}" style="color: red
+         ;"></span>
+         </p>
+
+         <br/>
+
+
+         <div data-th-if = "${#fields.hasErrors('global')}">
+            <p data-th-each ="err: ${#fields.errors('global')}" data-th-text="${err}" class ="error" style="color:red
+            "></p>
+         </div>
+
+        <P>
+            <input type="submit" value="Save" />
+        </P>
+    </form>
+</body>
+</html>
