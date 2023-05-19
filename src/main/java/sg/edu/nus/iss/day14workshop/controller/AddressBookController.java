@@ -15,36 +15,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
-
 @Controller
 @RequestMapping(path = "/")
 public class AddressBookController {
-   
+
     @Autowired
     ContactRedis repository;
-   
-//request method to load landing page
-@GetMapping
-public String showAddressBook(Model model){
-    model.addAttribute("contact", new Contact());
-    return "addressBook";
-}
 
-///to save the contact information
-@PostMapping( consumes ="application/x-www-form-urlencoded", path=  "/contact")
-public String saveAddressBook(@Valid Contact contact, BindingResult bindingResult,Model model){ 
-    if(bindingResult.hasErrors()){
-       return "addressBook";  
+    // request method to load landing page
+    @GetMapping
+    public String showAddressBook(Model model) {
+        model.addAttribute("contact", new Contact());
+        return "addressBook";
     }
-        repository.saveContact(contact, model);
-        model.addAttribute("successMessage", "Contact saved successfully, with status code: " +HttpStatus.CREATED +".");
-    return "showContact";
-}
 
-   @GetMapping("/contact/{contactId}")
+    /// to save the contact information
+    @PostMapping(consumes="application/x-www-form-urlencoded",path="/contact")
+    public String saveAddressBook(@Valid Contact contact, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "addressBook";
+        }
+
+        repository.saveContact(contact, model);
+        model.addAttribute("successMessage",
+                "Contact saved successfully, with status code: " + HttpStatus.CREATED + ".");
+        return "showContact";
+    }
+
+    @GetMapping("/contact/{contactId}")
     public String getContactById(Model model, @PathVariable String contactId) {
-       Contact contact =  new Contact();
-       contact = repository.getContactById(contactId);
+        Contact contact = new Contact();
+        contact = repository.getContactById(contactId);
         if (contact == null) {
             model.addAttribute("errorMessage", "Contact not found");
             return "error";
