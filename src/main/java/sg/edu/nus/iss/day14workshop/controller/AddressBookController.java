@@ -60,7 +60,7 @@ public class AddressBookController {
         model.addAttribute("contacts", contacts);
         System.out.println(contacts);
         return "contacts";
-
+        
     }
 
 }
